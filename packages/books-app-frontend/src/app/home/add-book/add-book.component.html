@@ -1,0 +1,68 @@
+<h3>Add Book</h3>
+<br>
+<div class="container-fluid">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-row">
+      <div class="col">
+        <input type="text" class="form-control" formControlName="title" placeholder="Title" />
+      </div>
+      <div class="col">
+        <input type="text" class="form-control" formControlName="author" placeholder="Author" />
+      </div>
+    </div>
+    <br />
+    <div class="form-row">
+      <div class="col">
+        <input type="text" class="form-control" formControlName="imageUrl" placeholder="Image URL" />
+      </div>
+    </div>
+    <br />
+    <div class="form-row">
+      <div class="col">
+        <input type="text" class="form-control" formControlName="description" placeholder="Description" />
+      </div>
+    </div>
+    <br />
+
+
+    <div class="form-row">
+      <div class="col">
+        <input
+          type="text"
+          class="form-control"
+          formControlName="year"
+          placeholder="year"
+        />
+      </div>
+    </div>
+<br>
+    <div class="form-row">
+      <div class="col">
+        <input
+          type="text"
+          class="form-control"
+          formControlName="genre"
+          placeholder="genre"
+        />
+      </div>
+    </div>
+<br>
+    <div class="form-row">
+      <div class="col">
+        <input
+          type="text"
+          class="form-control"
+          formControlName="isbn"
+          placeholder="isbn"
+        />
+      </div>
+    </div>
+<br>
+    <div class="form-row">
+      <div class="col">
+        <button type="button" class="btn btn-dark" type="submit">Submit</button>
+      </div>
+    </div>
+    <br>
+  </form>
+</div>
