@@ -26,9 +26,14 @@ const appSwaggerStack = new AppSwaggerStack(app, `books-cdk-swagger-stack-${env.
   env: env,
 });
 
+const appFrontendStack = new AppFrontendStack(app, `books-cdk-frontend-stack-${env.stage}`, {
+  env: env,
+});
+
 const booksCognitoStack = new AppCognitoStack(app, `books-cdk-cognito-stack-${env.stage}`, {
   env: env,
   swaggerDistribution: appSwaggerStack.swaggerDistribution,
+  frontEndDistribution: appFrontendStack.frontendDistribution,
 });
 
 
@@ -38,13 +43,10 @@ const booksAppStack= new AppStack(app, `books-cdk-app-stack-${env.stage}`, {
   userPool: booksCognitoStack.userPool,
 });
 
-new AppFrontendStack(app, `books-cdk-frontend-stack-${env.stage}`, {
-  env: env,
-});
-
 
 appSwaggerStack.addDependency(appLambdaEdgeStack);
-booksCognitoStack.addDependency(appSwaggerStack)
-booksAppStack.addDependency(booksCognitoStack)
+booksCognitoStack.addDependency(appSwaggerStack);
+booksCognitoStack.addDependency(appFrontendStack);
+booksAppStack.addDependency(booksCognitoStack);
 
 app.synth();

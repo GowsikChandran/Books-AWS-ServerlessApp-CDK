@@ -9,13 +9,15 @@ const project = new typescript.TypeScriptAppProject({
     '@aws-sdk/lib-dynamodb',
       'uuid',
       'tsyringe',
-      'tsoa',
+      '@tsoa/runtime',
       'reflect-metadata',
       'path-to-regexp',
   ],
   devDeps: [
     '@types/aws-lambda',
     '@types/uuid',
+    '@tsoa/cli',
+     'tsoa',
   ],
   packageManager: NodePackageManager.NPM,
 

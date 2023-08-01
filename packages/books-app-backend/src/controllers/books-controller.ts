@@ -1,8 +1,8 @@
-import {Body, Controller, Delete, Get, Post, Put, Response, Route, SuccessResponse, Tags} from "tsoa";
 import {inject, injectable} from "tsyringe";
 import {diConstants} from "../di/di-constants";
 import {BooksService} from "../services/books-service";
 import {Book} from "../interfaces/book.interface";
+import {Body, Controller, Delete, Get, Post, Put, Response, Route, SuccessResponse, Tags} from "@tsoa/runtime";
 
 @injectable()
 @Route('books')

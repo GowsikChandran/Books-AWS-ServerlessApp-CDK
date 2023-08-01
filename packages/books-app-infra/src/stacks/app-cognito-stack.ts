@@ -7,6 +7,7 @@ import { env } from '../main';
 export interface AppCognitoProps extends cdk.StackProps {
   env: env;
   swaggerDistribution: cdk.aws_cloudfront.IDistribution;
+  frontEndDistribution: cdk.aws_cloudfront.IDistribution;
 }
 export class AppCognitoStack extends cdk.Stack {
 
@@ -49,9 +50,11 @@ export class AppCognitoStack extends cdk.Stack {
         scopes: [cdk.aws_cognito.OAuthScope.OPENID],
         callbackUrls: [
           `https://${props.swaggerDistribution.distributionDomainName}`,
+          `https://${props.frontEndDistribution.distributionDomainName}`,
         ],
         logoutUrls: [
           `https://${props.swaggerDistribution.distributionDomainName}`,
+          `https://${props.frontEndDistribution.distributionDomainName}`,
         ],
       },
     });

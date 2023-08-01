@@ -36,8 +36,10 @@ export class BookListComponent implements OnInit {
   }
 
   deleteBook(id: string): void {
-    this.bookService.deleteBookApi(id).subscribe(() => {
-      this.getBooks(); // Refresh the book list after deletion
-    });
+    if (confirm('Are you sure you want to delete this book?')) {
+      this.bookService.deleteBookApi(id).subscribe(() => {
+        this.getBooks(); // Refresh the book list after deletion
+      });
+    }
   }
 }

@@ -1,6 +1,10 @@
 {
   "dependencies": [
     {
+      "name": "@tsoa/cli",
+      "type": "build"
+    },
+    {
       "name": "@types/aws-lambda",
       "type": "build"
     },
@@ -71,6 +75,10 @@
       "type": "build"
     },
     {
+      "name": "tsoa",
+      "type": "build"
+    },
+    {
       "name": "typescript",
       "type": "build"
     },
@@ -83,6 +91,10 @@
       "type": "runtime"
     },
     {
+      "name": "@tsoa/runtime",
+      "type": "runtime"
+    },
+    {
       "name": "aws-lambda",
       "type": "runtime"
     },
@@ -92,10 +104,6 @@
     },
     {
       "name": "reflect-metadata",
-      "type": "runtime"
-    },
-    {
-      "name": "tsoa",
       "type": "runtime"
     },
     {

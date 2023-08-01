@@ -50,6 +50,7 @@ export class AppSwaggerStack extends cdk.Stack {
               policy: AwsCustomResourcePolicy.fromSdkCalls({
                   resources: AwsCustomResourcePolicy.ANY_RESOURCE,
               }),
+              installLatestAwsSdk: false,
           },
       );
       const arn = resource.getResponseField('Parameter.Value');

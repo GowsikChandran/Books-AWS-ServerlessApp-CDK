@@ -45,6 +45,7 @@ export class AppFrontendStack extends cdk.Stack {
                 policy: AwsCustomResourcePolicy.fromSdkCalls({
                     resources: AwsCustomResourcePolicy.ANY_RESOURCE,
                 }),
+                installLatestAwsSdk: false,
             },
         );
         const arn = resource.getResponseField('Parameter.Value');
@@ -66,6 +67,13 @@ export class AppFrontendStack extends cdk.Stack {
                     ],
                 },
                 defaultRootObject: 'index.html',
+                errorResponses: [
+                    {
+                        httpStatus: 404,
+                        responseHttpStatus: 200,
+                        responsePagePath: '/index.html',
+                    },
+                ],
             },
         );
 
@@ -79,5 +87,4 @@ export class AppFrontendStack extends cdk.Stack {
             },
         );
     }
-
 }

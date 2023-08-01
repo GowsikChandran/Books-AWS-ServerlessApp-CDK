@@ -6,7 +6,7 @@ import {BooksRepository} from "../repositories/book-repository";
 export class BooksService {
     constructor(@inject(BooksRepository) private booksRepository: BooksRepository) {}
 
-    public getAllBooks(): Promise<Book[]> {
+    async getAllBooks(): Promise<Book[]> {
         return this.booksRepository.getAllBooks();
     }
     async getBookById(id: string): Promise<Book> {

@@ -11,49 +11,56 @@ export async function handler(event: APIGatewayProxyEvent): Promise<APIGatewayPr
     try {
         const {httpMethod, path, body} = event;
 
-        const booksController: BooksController = diContainer.resolve(diConstants.BooksController);
+        if (httpMethod === 'OPTIONS') {
+            // Preflight request. Reply successfully:
+            return generateResponse(Response.Success.statusCode,
+                JSON.stringify('CORS check passed safe to proceed.'));
 
-        if (matchUrl(Api.books.basePath, path)) {
-            if (httpMethod === 'GET'){
-                const books = await booksController.getAllBooks();
-                return generateResponse(Response.Success.statusCode, books);
+        } else {
 
-            } else if (httpMethod === 'POST') {
+            const booksController: BooksController = diContainer.resolve(diConstants.BooksController);
 
-                const book = await booksController.createBook(JSON.parse(body || '{}') as Book);
-                return generateResponse(Response.Created.statusCode, book);
+            if (matchUrl(Api.books.basePath, path)) {
+                if (httpMethod === 'GET') {
+                    const books = await booksController.getAllBooks();
+                    return generateResponse(Response.Success.statusCode, books);
 
-            }else if (httpMethod === 'PUT') {
-                const book = await booksController.updateBook(JSON.parse(body || '{}') as Book);
-                return generateResponse(Response.Success.statusCode, book);
+                } else if (httpMethod === 'POST') {
 
-            }else{
-                return generateErrorResponse(Response.MethodNotAllowed.statusCode, Response.MethodNotAllowed.message);
-            }
+                    const book = await booksController.createBook(JSON.parse(body || '{}') as Book);
+                    return generateResponse(Response.Created.statusCode, book);
 
-        }else if (matchUrl(Api.books.basePathWithId, path)){
-            if (httpMethod === 'GET'){
-                // @ts-ignore
-                const { params } = matchUrl(Api.books.basePathWithId, path);
-                const book = await booksController.getBookById(params.id);
-                return generateResponse(Response.Success.statusCode, book);
+                } else if (httpMethod === 'PUT') {
+                    const book = await booksController.updateBook(JSON.parse(body || '{}') as Book);
+                    return generateResponse(Response.Success.statusCode, book);
 
-            }  else if (httpMethod === 'DELETE') {
-                // @ts-ignore
-                const { params } = matchUrl(Api.books.basePathWithId, path);
-                const responseCode = await booksController.deleteBookById(params.id);
-                if (responseCode === 204) {
-                    return generateResponse(Response.NoContent.statusCode, Response.NoContent.message);
-                }else{
-                    return generateResponse(Response.NotFound.statusCode, Response.NotFound.message);
+                } else {
+                    return generateErrorResponse(Response.MethodNotAllowed.statusCode, Response.MethodNotAllowed.message);
                 }
-            }
-            else{
-                return generateErrorResponse(Response.MethodNotAllowed.statusCode, Response.MethodNotAllowed.message);
-            }
 
-        }else {
-            return generateErrorResponse(Response.NotFound.statusCode, Response.NotFound.message);
+            } else if (matchUrl(Api.books.basePathWithId, path)) {
+                if (httpMethod === 'GET') {
+                    // @ts-ignore
+                    const {params} = matchUrl(Api.books.basePathWithId, path);
+                    const book = await booksController.getBookById(params.id);
+                    return generateResponse(Response.Success.statusCode, book);
+
+                } else if (httpMethod === 'DELETE') {
+                    // @ts-ignore
+                    const {params} = matchUrl(Api.books.basePathWithId, path);
+                    const responseCode = await booksController.deleteBookById(params.id);
+                    if (responseCode === 204) {
+                        return generateResponse(Response.NoContent.statusCode, Response.NoContent.message);
+                    } else {
+                        return generateResponse(Response.NotFound.statusCode, Response.NotFound.message);
+                    }
+                } else {
+                    return generateErrorResponse(Response.MethodNotAllowed.statusCode, Response.MethodNotAllowed.message);
+                }
+
+            } else {
+                return generateErrorResponse(Response.NotFound.statusCode, Response.NotFound.message);
+            }
         }
     } catch (error) {
     return generateErrorResponse(Response.InternalServerError.statusCode, error);
