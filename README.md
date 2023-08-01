@@ -7,7 +7,7 @@ This project is organized as a monorepo, with the frontend, backend, and infrast
 
 ## Architecture
 
-![Architecture Diagram](architecture/app-architecture-dark.drawio.png)
+![Architecture Diagram](architecture/app-architecture.drawio.png)
 
 ## Components
 
