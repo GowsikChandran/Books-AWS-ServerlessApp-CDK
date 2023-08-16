@@ -1,0 +1,19 @@
+{
+  "entryFile": "src/swagger/tsoa.ts",
+  "noImplicitAdditionalProperties": "throw-on-extras",
+  "controllerPathGlobs": ["src/controllers/**/*.ts"],
+  "spec": {
+    "outputDirectory": "./build",
+    "host": "n4dvcv50p1.execute-api.eu-central-1.amazonaws.com/dev/v1",
+    "specFileBaseName": "swagger-config",
+    "version": "1",
+    "yaml": false,
+    "specVersion": 3,
+    "name": "Books App Backend",
+    "description": "The Serverless App provides a backend for the Books CRUD App."
+  },
+  "routes": {
+    "routesDir": "./build",
+    "iocModule": "src/swagger/ioc"
+  }
+}

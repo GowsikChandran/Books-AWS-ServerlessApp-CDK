@@ -1,0 +1,263 @@
+{
+  "tasks": {
+    "build": {
+      "name": "build",
+      "description": "Full release build",
+      "steps": [
+        {
+          "spawn": "default"
+        },
+        {
+          "spawn": "pre-compile"
+        },
+        {
+          "spawn": "compile"
+        },
+        {
+          "spawn": "post-compile"
+        },
+        {
+          "spawn": "test"
+        },
+        {
+          "spawn": "package"
+        }
+      ]
+    },
+    "bundle-backend-lambda": {
+      "name": "bundle-backend-lambda",
+      "steps": [
+        {
+          "exec": "esbuild src/index.ts --bundle --platform=node --target=node18 --external:@aws-sdk/client-dynamodb --external:@aws-sdk/lib-dynamodb --minify --outfile=dist/index.js"
+        }
+      ]
+    },
+    "clobber": {
+      "name": "clobber",
+      "description": "hard resets to HEAD of origin and cleans the local repo",
+      "env": {
+        "BRANCH": "$(git branch --show-current)"
+      },
+      "steps": [
+        {
+          "exec": "git checkout -b scratch",
+          "name": "save current HEAD in \"scratch\" branch"
+        },
+        {
+          "exec": "git checkout $BRANCH"
+        },
+        {
+          "exec": "git fetch origin",
+          "name": "fetch latest changes from origin"
+        },
+        {
+          "exec": "git reset --hard origin/$BRANCH",
+          "name": "hard reset to origin commit"
+        },
+        {
+          "exec": "git clean -fdx",
+          "name": "clean all untracked files"
+        },
+        {
+          "say": "ready to rock! (unpushed commits are under the \"scratch\" branch)"
+        }
+      ],
+      "condition": "git diff --exit-code > /dev/null"
+    },
+    "cloudfront-invalidate": {
+      "name": "cloudfront-invalidate",
+      "steps": [
+        {
+          "exec": "aws cloudfront create-invalidation --distribution-id EODQM6B16MM9Q --paths /swagger-config.json"
+        }
+      ]
+    },
+    "compile": {
+      "name": "compile",
+      "description": "Only compile",
+      "steps": [
+        {
+          "exec": "tsc --build"
+        }
+      ]
+    },
+    "default": {
+      "name": "default",
+      "description": "Synthesize project files",
+      "steps": [
+        {
+          "exec": "ts-node --project tsconfig.dev.json .projenrc.ts"
+        }
+      ]
+    },
+    "eject": {
+      "name": "eject",
+      "description": "Remove projen from the project",
+      "env": {
+        "PROJEN_EJECTING": "true"
+      },
+      "steps": [
+        {
+          "spawn": "default"
+        }
+      ]
+    },
+    "esbuild-bundle-analyse": {
+      "name": "esbuild-bundle-analyse",
+      "steps": [
+        {
+          "exec": "esbuild src/index.ts --bundle --platform=node --target=node18 --external:@aws-sdk/client-dynamodb --external:@aws-sdk/lib-dynamodb --outfile=dist/index.js --metafile=dist/meta.json"
+        }
+      ]
+    },
+    "eslint": {
+      "name": "eslint",
+      "description": "Runs eslint against the codebase",
+      "steps": [
+        {
+          "exec": "eslint --ext .ts,.tsx --fix --no-error-on-unmatched-pattern src test build-tools projenrc .projenrc.ts"
+        }
+      ]
+    },
+    "install": {
+      "name": "install",
+      "description": "Install project dependencies and update lockfile (non-frozen)",
+      "steps": [
+        {
+          "exec": "npm install"
+        }
+      ]
+    },
+    "install:ci": {
+      "name": "install:ci",
+      "description": "Install project dependencies using frozen lockfile",
+      "steps": [
+        {
+          "exec": "npm ci"
+        }
+      ]
+    },
+    "package": {
+      "name": "package",
+      "description": "Creates the distribution package"
+    },
+    "post-compile": {
+      "name": "post-compile",
+      "description": "Runs after successful compilation"
+    },
+    "post-upgrade": {
+      "name": "post-upgrade",
+      "description": "Runs after upgrading dependencies"
+    },
+    "pre-compile": {
+      "name": "pre-compile",
+      "description": "Prepare the project for compilation"
+    },
+    "s3-upload": {
+      "name": "s3-upload",
+      "steps": [
+        {
+          "exec": "aws s3 cp build/swagger-config.json s3://books-app-swagger-bucket-dev/"
+        }
+      ]
+    },
+    "swagger-gen": {
+      "name": "swagger-gen",
+      "steps": [
+        {
+          "exec": "npx tsoa spec-and-routes"
+        }
+      ]
+    },
+    "test": {
+      "name": "test",
+      "description": "Run tests",
+      "steps": [
+        {
+          "exec": "jest --passWithNoTests --updateSnapshot",
+          "receiveArgs": true
+        },
+        {
+          "spawn": "eslint"
+        }
+      ]
+    },
+    "test:watch": {
+      "name": "test:watch",
+      "description": "Run jest in watch mode",
+      "steps": [
+        {
+          "exec": "jest --watch"
+        }
+      ]
+    },
+    "update-backend-lambda": {
+      "name": "update-backend-lambda",
+      "steps": [
+        {
+          "exec": "aws lambda update-function-code  --function-name BooksAppLambdadev  --region eu-central-1 --zip-file fileb://dist/index.zip"
+        }
+      ]
+    },
+    "upgrade": {
+      "name": "upgrade",
+      "description": "upgrade dependencies",
+      "env": {
+        "CI": "0"
+      },
+      "steps": [
+        {
+          "exec": "npm update npm-check-updates"
+        },
+        {
+          "exec": "npm-check-updates --dep dev --upgrade --target=minor --reject='esbuild'"
+        },
+        {
+          "exec": "npm-check-updates --dep bundle --upgrade --target=minor --reject='esbuild'"
+        },
+        {
+          "exec": "npm-check-updates --dep peer --upgrade --target=minor --reject='esbuild'"
+        },
+        {
+          "exec": "npm-check-updates --dep prod --upgrade --target=minor --reject='esbuild'"
+        },
+        {
+          "exec": "npm-check-updates --dep optional --upgrade --target=minor --reject='esbuild'"
+        },
+        {
+          "exec": "npm install"
+        },
+        {
+          "exec": "npm update @tsoa/cli @types/aws-lambda @types/jest @types/node @types/uuid @typescript-eslint/eslint-plugin @typescript-eslint/parser esbuild eslint-import-resolver-node eslint-import-resolver-typescript eslint-plugin-import eslint jest jest-junit npm-check-updates projen ts-jest ts-node tsoa typescript @aws-sdk/client-dynamodb @aws-sdk/lib-dynamodb @tsoa/runtime aws-lambda path-to-regexp reflect-metadata tsyringe uuid"
+        },
+        {
+          "exec": "npx projen"
+        },
+        {
+          "spawn": "post-upgrade"
+        }
+      ]
+    },
+    "watch": {
+      "name": "watch",
+      "description": "Watch & compile in the background",
+      "steps": [
+        {
+          "exec": "tsc --build -w"
+        }
+      ]
+    },
+    "zip-backend-lambda": {
+      "name": "zip-backend-lambda",
+      "steps": [
+        {
+          "exec": "zip -j dist/index.zip dist/index.js"
+        }
+      ]
+    }
+  },
+  "env": {
+    "PATH": "$(npx -c \"node --print process.env.PATH\")"
+  },
+  "//": "~~ Generated by projen. To modify, edit .projenrc.ts and run \"npx projen\"."
+}

@@ -1,0 +1,12 @@
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4">Books App</h1>
+      <p class="lead">My favourite books!</p>
+      <button type="button" class="btn btn-dark" [routerLink]="['home']">Home</button>
+      <button style="margin-left: 1px;" type="button" class="btn btn-dark" [routerLink]="['add']">Add Books</button>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+    <router-outlet></router-outlet>
+  </div>

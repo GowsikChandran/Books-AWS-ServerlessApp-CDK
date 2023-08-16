@@ -1,0 +1,183 @@
+[
+      {
+        "id": 1,
+        "title": "To Kill a Mockingbird",
+        "author": "Harper Lee",
+        "year": 1960,
+        "genre": "Fiction",
+        "isbn": "9780446310789",
+        "imageUrl": "https://m.media-amazon.com/images/I/41j-s9fHJcL.jpg",
+        "description": "A gripping, heart-wrenching, and wholly remarkable tale of coming-of-age in a South poisoned by virulent prejudice."
+      },
+      {
+        "id": 2,
+        "title": "1984",
+        "author": "George Orwell",
+        "year": 1949,
+        "genre": "Dystopian",
+        "isbn": "9780451524935",
+        "description": "A startling and haunting vision of the world, 1984 is so powerful that it is completely convincing from start to finish."
+      },
+      {
+        "id": 3,
+        "title": "Pride and Prejudice",
+        "author": "Jane Austen",
+        "year": 1813,
+        "genre": "Romance",
+        "isbn": "9780679783268",
+        "description": "Austen's best-loved tale of love, marriage and society in class-conscious Georgian England."
+      },
+      {
+        "id": 4,
+        "title": "The Great Gatsby",
+        "author": "F. Scott Fitzgerald",
+        "year": 1925,
+        "genre": "Fiction",
+        "isbn": "9780743273565",
+        "description": "The story of the mysteriously wealthy Jay Gatsby and his love for the beautiful Daisy Buchanan."
+      },
+      {
+        "id": 5,
+        "title": "Moby Dick",
+        "author": "Herman Melville",
+        "year": 1851,
+        "genre": "Adventure",
+        "isbn": "9781503280786",
+        "description": "The sailor Ishmael narrates the obsessive quest of Ahab, captain of the whaler Pequod, for revenge on the giant white sperm whale Moby Dick."
+      },
+      {
+        "id": 6,
+        "title": "War and Peace",
+        "author": "Leo Tolstoy",
+        "year": 1869,
+        "genre": "Historical Fiction",
+        "isbn": "9781400079988",
+        "description": "Epic in scale, War and Peace delineates in graphic detail events leading up to Napoleon's invasion of Russia, and the impact of the Napoleonic era on Tsarist society."
+      },
+      {
+        "id": 7,
+        "title": "The Catcher in the Rye",
+        "author": "J.D. Salinger",
+        "year": 1951,
+        "genre": "Fiction",
+        "isbn": "9780316769488",
+        "description": "The story of Holden Caulfield with his idiosyncrasies, penetrating insight, confusion, sensitivity and negativism."
+      },
+      {
+        "id": 8,
+        "title": "The Hobbit",
+        "author": "J.R.R. Tolkien",
+        "year": 1937,
+        "genre": "Fantasy",
+        "isbn": "9780547928227",
+        "description": "Bilbo Baggins is a hobbit who enjoys a comfortable, unambitious life, rarely traveling any farther than his pantry or cellar."
+      },
+      {
+        "id": 9,
+        "title": "Fahrenheit 451",
+        "author": "Ray Bradbury",
+        "year": 1953,
+        "genre": "Dystopian",
+        "isbn": "9781451673319",
+        "description": "A dystopian novel by American writer Ray Bradbury, first published in 1953."
+      },
+      {
+        "id": 10,
+        "title": "Crime and Punishment",
+        "author": "Fyodor Dostoevsky",
+        "year": 1866,
+        "genre": "Fiction",
+        "isbn": "9780486415871",
+        "description": "The story of Raskolnikov, a poor ex-student in St. Petersburg who formulates and executes a plan to kill an unscrupulous pawnbroker for her cash."
+      },
+      {
+        "id": 11,
+        "title": "The Lord of the Rings",
+        "author": "J.R.R. Tolkien",
+        "year": 1954,
+        "genre": "Fantasy",
+        "isbn": "9780544003415",
+        "description": "The future of civilization rests in the fate of the One Ring, which has been lost for centuries."
+      },
+      {
+        "id": 12,
+        "title": "Ulysses",
+        "author": "James Joyce",
+        "year": 1922,
+        "genre": "Modernist",
+        "isbn": "9781840226355",
+        "description": "Ulysses chronicles the passage of Leopold Bloom through Dublin during an ordinary day, 16 June 1904."
+      },
+      {
+        "id": 13,
+        "title": "Don Quixote",
+        "author": "Miguel de Cervantes",
+        "year": 1605,
+        "genre": "Adventure",
+        "isbn": "9780060934347",
+        "description": "Alonso Quixano, a retired country gentleman in his fifties, lives in an unnamed section of La Mancha with his niece and a housekeeper."
+      },
+      {
+        "id": 14,
+        "title": "The Odyssey",
+        "author": "Homer",
+        "year": 800,
+        "genre": "Epic",
+        "isbn": "9780140268867",
+        "description": "The Odyssey is one of two major ancient Greek epic poems attributed to Homer."
+      },
+      {
+        "id": 15,
+        "title": "One Hundred Years of Solitude",
+        "author": "Gabriel Garcia Marquez",
+        "year": 1967,
+        "genre": "Magical Realism",
+        "isbn": "9780060883287",
+        "description": "Tells the story of the Buendia family, and chronicles the irreconcilable conflict between the desire for solitude and the need for love."
+      },
+      {
+        "id": 16,
+        "title": "The Divine Comedy",
+        "author": "Dante Alighieri",
+        "year": 1320,
+        "genre": "Epic",
+        "isbn": "9780140448955",
+        "description": "The Divine Comedy describes Dante's descent into Hell with Virgil as a guide; his ascent of Mount Purgatory and encounter with his dead love, Beatrice; and finally, his arrival in Heaven."
+      },
+      {
+        "id": 17,
+        "title": "The Iliad",
+        "author": "Homer",
+        "year": 762,
+        "genre": "Epic",
+        "isbn": "9780140275360",
+        "description": "The Iliad is an ancient Greek epic poem in dactylic hexameter, traditionally attributed to Homer."
+      },
+      {
+        "id": 18,
+        "title": "Madame Bovary",
+        "author": "Gustave Flaubert",
+        "year": 1856,
+        "genre": "Fiction",
+        "isbn": "9781853260785",
+        "description": "The story focuses on a doctor's wife, Emma Bovary, who has adulterous affairs and lives beyond her means in order to escape the banalities and emptiness of provincial life."
+      },
+      {
+        "id": 19,
+        "title": "The Brothers Karamazov",
+        "author": "Fyodor Dostoevsky",
+        "year": 1880,
+        "genre": "Philosophical novel",
+        "isbn": "9780374528379",
+        "description": "The passionate and troubled relationships between the three brothers and their father mirror, at more personal level, the struggle of a civilization straining to reconcile the conflict between faith and doubt."
+      },
+      {
+        "id": 20,
+        "title": "Brave New World",
+        "author": "Aldous Huxley",
+        "year": 1932,
+        "genre": "Dystopian",
+        "isbn": "9780060850524",
+        "description": "A dystopian novel written in 1931 by English author Aldous Huxley, and published in 1932."
+      }
+    ]
