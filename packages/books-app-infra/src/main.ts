@@ -15,12 +15,9 @@ export interface env {
 }
 // for development, use account/region from cdk cli
 const env = {
-  // account: process.env.CDK_DEFAULT_ACCOUNT,
-  // region: process.env.CDK_DEFAULT_REGION,
-  // stage:'dev',
-  account: '845447296921',
-  region: 'eu-central-1',
-  stage: 'Dev',
+  account: process.env.CDK_DEFAULT_ACCOUNT,
+  region: process.env.CDK_DEFAULT_REGION,
+  stage:'Dev',
 };
 
 
